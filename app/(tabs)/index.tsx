@@ -1,60 +1,101 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, View, Text, ImageBackground, ScrollView} from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import tw from "twrnc";
+import { Entypo, FontAwesome } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View>
+    <SafeAreaView>
+      <ScrollView>
+
+        <ImageBackground source={require('../../assets/images/Doctor.webp')} style={tw`h-175 bg-top`}>
+        </ImageBackground>
+      
+        <View style={tw`bg-zinc-500 h-full rounded-t-[10] bottom-75 w-full p-12 border-t-2 border-black`}>
+          <Text style={tw`text-4xl font-extrabold w-1/2`}>
+            Ardhika Raditya
+          </Text>
+          <View style={tw`flex-row w-3/4 gap-6 items-center mt-2`}>
+            <Text style={tw`mt-1 text-slate-900 text-lg font-semibold`}>
+              Programmer
+            </Text>
+            <Text style={tw`mt-1 text-lg text-slate-900 font-semibold`}>
+              <Entypo name='location-pin' style={tw`text-lg`} /> Babel
+            </Text>
+          </View>
+
+          <View style={tw`flex-row w-full gap-6 items-center justify-between mt-5`}>
+            <View>
+              <Text style={tw`text-2xl font-extrabold`}>11</Text>
+              <Text style={tw`text-lg bottom-1`}>Kelas</Text>
+            </View>
+            <View>
+              <Text style={tw`text-2xl font-extrabold`}>RPL</Text>
+              <Text style={tw`text-lg bottom-1`}>Jurusan</Text>
+            </View>
+            <View>
+              <Text style={tw`text-2xl font-extrabold`}>3</Text>
+              <Text style={tw`text-lg bottom-1`}>Proyek</Text>
+            </View>
+          </View>
+
+          <View style={tw`mt-5`}>
+            <Link href="/settings/profile">
+            <Text style={tw`text-white bg-black w-25 p-2 text-center text-lg font-medium`}>Hire Me</Text>
+            </Link>
+          </View>
+
+          <View style={tw`mt-8 flex-row items-center w-100 gap-5`}>
+            <View>
+              <FontAwesome name="facebook" size={24}/>
+            </View>
+            
+            <View>
+              <FontAwesome name="linkedin" size={24}/>
+            </View>
+
+            <View>
+              <FontAwesome name="twitter" size={24}/>
+            </View>
+          </View>
+
+          <View style={tw`mt-7`}>
+            <View>
+              <Text style={tw`text-2xl font-extrabold mb-1`}>ABOUT ME</Text>
+              <Text>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae corporis veniam iure vel quaerat nostrum sunt voluptas facere saepe sit! Fugit nulla ipsam magnam. Provident quo eveniet iure veritatis dolor?</Text>
+            </View>
+
+            <View style={tw`mt-5`}>
+              <Text style={tw`text-2xl font-extrabold mb-1`}>PROJECT</Text>
+              <Text>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestiae corporis veniam iure vel quaerat nostrum sunt voluptas facere saepe sit! Fugit nulla ipsam magnam. Provident quo eveniet iure veritatis dolor?</Text>
+            </View>
+
+            <View style={tw`mt-5`}>
+              <Text style={tw`text-2xl font-extrabold mb-2`}>TOOLS</Text>
+              <View style={tw`flex-row items-center w-100 gap-5`}>
+                <Text>Visual Studio Code</Text>
+                <Text>Android Studio</Text>
+                <Text>Figma</Text>
+              </View>
+            </View>
+          </View>
+
+        </View>
+
+      </ScrollView>
+    </SafeAreaView>
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
+const css = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -65,10 +106,9 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+    height: 200,
+    width: 200,
+    borderRadius: 100,
+    marginBottom: 12,
   },
 });
